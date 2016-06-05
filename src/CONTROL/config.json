@@ -1,0 +1,43 @@
+{
+  "general": {
+    "architecture": "any",
+    "default-lang": "en",
+    "depends": [
+      "python(>=2.7.3.r13)"
+    ],
+    "developer": "https://github.com/drzoidberg33/plexpy.git",
+    "email": "support@nativecode.com",
+    "firmware": "2.4.0",
+    "maintainer": "NativeCode Development",
+    "model": [
+      "50xx",
+      "51xx"
+    ],
+    "name": "{{name}}",
+    "package": "{{name}}",
+    "version": "{{version}}",
+    "website": "https://www.nativecode.com/"
+  },
+  "adm-desktop": {
+    "app": {
+      "protocol": "http",
+      "port": 8181,
+      "type": "custom",
+      "url": "/"
+    },
+    "privilege": {
+      "accessible": "users"
+    }
+  },
+  "register": {
+    "port": [
+      "8181"
+    ],
+    "share-folder": [
+      {
+        "name": "{{name}}",
+        "description": "PlexPy Installation Directory"
+      }
+    ]
+  }
+}
