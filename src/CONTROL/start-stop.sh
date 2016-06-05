@@ -1,47 +1,22 @@
 #!/bin/sh
 
-NAME=PlexPy
-PACKAGE=plexpy
+PACKAGE=/usr/local/AppCentral/{{name}}
+. $PACKAGE/CONTROL/env.sh
 
-if [ -z "${APKG_PKG_DIR}" ]; then
-	PKG_DIR=/usr/local/AppCentral/${PACKAGE}
-else
-	PKG_DIR=$APKG_PKG_DIR
-fi
+case $1 in
+    start)
+        $PLEXPY_DIR/PlexPy.py --daemon --datadir $PLEXPY_DATA --nolaunch --pidfile
+        ;;
 
-. ${PKG_DIR}/CONTROL/env.sh
+    stop)
+        ;;
 
-PIDFILE=/var/run/${PACKAGE}.pid
-CHUID=${USER}:${GROUP}
+    reload)
+        ;;
 
-start_daemon() {
-	echo "Starting ${NAME}..."
-
-	# Set umask to create files with world r/w
-	umask 0
-
-	env TERM="linux" \
-		start-stop-daemon -S \
-			--pidfile $PIDFILE \
-			--chuid $CHUID \
-			--user $USER \
-			--exec dtach -- -n $SOCKET -e "^T" env HOME=$BASE PlexPy.py
-
-	# Get the pid of the newest process matching plexpy
-	pgrep -n PlexPy.py > $PIDFILE
-}
-
-stop_daemon_with_signal() {
-	start-stop-daemon -K --quiet --user $USER --pidfile $PIDFILE --signal "$1"
-}
-
-stop_daemon() {
-	echo "Stopping ${NAME}..."
-	stop_daemon_with_signal 2
-}
-
-daemon_status() {
-	start-stop-daemon -K --quiet --test --user $USER --pidfile $PIDFILE
-}
+    *)
+        echo "usage: $0 {start|stop|reload}"
+        ;;
+esac
 
 exit 0
