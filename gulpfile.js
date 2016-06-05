@@ -48,7 +48,7 @@ gulp.task('clean', () => {
 
 gulp.task('default', ['build'])
 
-gulp.task('package', ['package:build'], plugin.shell.task(['echo -e "\n" | sudo -S python tools/apkg-tools.py create dist']))
+gulp.task('package', ['build'], plugin.shell.task(['echo -e "\n" | sudo -S python tools/apkg-tools.py create dist']))
 
 gulp.task('download', ['plexpy'])
 gulp.task('plexpy', done => {
