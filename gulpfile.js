@@ -41,9 +41,16 @@ gulp.bt.reload('build').when({
   'src/**/*.txt': ['build:txt']
 })
 
+gulp.task('clean', () => {
+  return gulp.src(['dist', '**/*.apk'])
+    .pipe(plugin.clean())
+})
+
 gulp.task('default', ['build'])
 
-gulp.task('package', ['build'], plugin.shell.task(['echo -e "\n" | sudo -S python tools/apkg-tools.py create dist']))
+gulp.task('package:clean', ['clean'])
+gulp.task('package:build', ['package:clean'])
+gulp.task('package', ['package:build'], plugin.shell.task(['echo -e "\n" | sudo -S python tools/apkg-tools.py create dist']))
 
 gulp.task('download', ['plexpy'])
 gulp.task('plexpy', done => {
