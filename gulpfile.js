@@ -50,7 +50,7 @@ gulp.task('clean', () => {
 gulp.task('default', ['build'])
 
 gulp.task('package:build', ['build'], () => {
-  return gulp.src(['**/.git/'])
+  return gulp.src(['dist/opt/plexpy/lib/.git/'])
     .pipe(plugin.debug({ title: '.git:' }))
     .pipe(plugin.clean())
 })
