@@ -1,0 +1,12 @@
+{
+  "app": {
+    "directories": {
+      "data": "",
+      "logs": ""
+    }
+  },
+  "plexpy": {
+    "tag": "v1.4.5",
+    "url": "https://github.com/drzoidberg33/plexpy.git"
+  }
+}
