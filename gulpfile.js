@@ -43,7 +43,7 @@ gulp.bt.reload('build').when({
 
 gulp.task('default', ['build'])
 
-gulp.task('package', ['build'], plugin.shell.task(['python tools/apkg-tools.py create dist']))
+gulp.task('package', ['build'], plugin.shell.task(['su --session-command="python tools/apkg-tools.py create dist" dynamic']))
 
 gulp.task('download', ['plexpy'])
 gulp.task('plexpy', done => {
