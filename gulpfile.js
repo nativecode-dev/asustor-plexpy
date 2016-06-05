@@ -44,7 +44,7 @@ gulp.bt.reload('build').when({
 gulp.task('default', ['build'])
 
 gulp.task('package', ['build'], () => {
-  return plugin.run('start D:\\Tools\\python\\python.exe tools/apkg-tools.py').exec()
+  return plugin.run('python tools/apkg-tools.py').exec()
     .pipe(plugin.debug({ title: 'package:' }))
     .pipe(gulp.dest('packages'))
 })
