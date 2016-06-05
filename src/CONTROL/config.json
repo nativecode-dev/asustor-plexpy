@@ -15,7 +15,7 @@
     ],
     "name": "{{name}}",
     "package": "{{name}}",
-    "version": "1.4.5",
+    "version": "{{version}}",
     "website": "https://www.nativecode.com/"
   },
   "adm-desktop": {
@@ -33,14 +33,6 @@
     "port": [
       "8181"
     ],
-    "prerequisites": {
-      "enable-service": [
-        "httpd"
-      ],
-      "restart-service": [
-        "httpd"
-      ]
-    },
     "share-folder": [
       {
         "name": "{{name}}",
