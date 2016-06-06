@@ -5,7 +5,7 @@
     "depends": [
       "python(>=2.7)"
     ],
-    "developer": "https://github.com/drzoidberg33/plexpy.git",
+    "developer": "drzoidberg33",
     "email": "support@nativecode.com",
     "firmware": "2.4.0",
     "maintainer": "NativeCode Development",
@@ -16,7 +16,7 @@
     "name": "{{name}}",
     "package": "{{name}}",
     "version": "{{version}}",
-    "website": "https://www.nativecode.com/"
+    "website": "https://github.com/drzoidberg33/plexpy"
   },
   "adm-desktop": {
     "app": {

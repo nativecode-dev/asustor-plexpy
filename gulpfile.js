@@ -15,6 +15,17 @@ gulp.bt.build({
       .pipe(plugin.rename('changelog.txt'))
       .pipe(gulp.dest('dist/CONTROL'))
   },
+  description: {
+    src: () => plugin.download($.plexpy.readme)
+      .pipe(plugin.intercept(file => {
+        var regex = /## Features\s*\*(.*\.\n)+/gm
+        var matches = regex.exec(file.contents.toString())
+        file.contents = new Buffer(matches[0].trim())
+        return file
+      }))
+      .pipe(plugin.rename('description.txt'))
+      .pipe(gulp.dest('dist/CONTROL'))
+  },
   json: {
     build: src => src
       .pipe(plugin.mustache(context))
