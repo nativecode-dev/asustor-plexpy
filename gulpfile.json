@@ -1,17 +1,15 @@
 {
   "app": {
-    "directories": {
-      "config": "etc",
-      "data": "data",
-      "logs": "logs"
-    }
+    "build": 0,
+    "version": ":{{plexpy.version}}.{{app.build}}"
   },
   "plexpy": {
     "changelog": ":{{{plexpy.usercontent}}}/{{plexpy.tag}}/CHANGELOG.md",
     "license": ":{{{plexpy.usercontent}}}/{{plexpy.tag}}/LICENSE",
     "readme": ":{{{plexpy.usercontent}}}/{{plexpy.tag}}/README.md",
-    "tag": "v1.4.5",
+    "tag": ":v{{plexpy.version}}",
+    "url": "https://github.com/drzoidberg33/plexpy.git",
     "usercontent": "https://raw.githubusercontent.com/drzoidberg33/plexpy",
-    "url": "https://github.com/drzoidberg33/plexpy.git"
+    "version": "1.4.5"
   }
 }

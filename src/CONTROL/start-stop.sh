@@ -3,10 +3,27 @@
 PACKAGE=/usr/local/AppCentral/{{name}}
 cd $PACKAGE
 
-kill_by_pid() {
-    if [ -f $PACKAGE/data/.pidfile]; then
-        kill $(cat $PACKAGE/data/.pidfile)
-    fi
+package_kill() {
+    kill -KILL $(cat $PACKAGE/data/.pidfile)
+}
+
+package_terminate() {
+    kill -TERM $(cat $PACKAGE/data/.pidfile)
+}
+
+package_start() {
+    python lib/PlexPy.py --daemon --datadir $PACKAGE/data --nolaunch --pidfile $PACKAGE/data/.pidfile
+}
+
+package_stop() {
+    i=0
+    REPEATS=3
+    package_terminate
+    while [ -f $PACKAGE/data/.pidfile ]
+    do
+        sleep 2
+        let "i+=1"
+    done
 }
 
 case $1 in
@@ -14,27 +31,19 @@ case $1 in
         echo "Located package directory $PACKAGE."
         echo "Using data directory $PACKAGE/data."
         echo "Launching daemon..."
-        python lib/PlexPy.py --daemon --datadir $PACKAGE/data --nolaunch --pidfile $PACKAGE/data/.pidfile
+        package_start
         echo "Done."
         exit 0
         ;;
 
     stop)
-        i=0
-        REPEATS=3
-        while [ $i -lt $REPEATS ]
-        do
-            kill_by_pid
-            sleep 1
-            if [ ! -f $PACKAGE/data/.pidfile]; then
-                exit 0
-            fi
-            let "i+=1"
-        done
+        package_stop
         exit 1
         ;;
 
     reload)
+        package_stop
+        package_start
         ;;
 
     *)

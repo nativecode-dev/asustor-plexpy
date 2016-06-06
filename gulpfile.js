@@ -11,13 +11,15 @@ var context = merge({}, npmconf, $)
 
 gulp.bt.build({
   changelog: {
-    src: () => plugin.download($.plexpy.changelog)
+    src: () => plugin.downloadStream($.plexpy.changelog)
+      .pipe(plugin.buffer())
       .pipe(plugin.replace('##', ''))
       .pipe(plugin.rename('changelog.txt'))
       .pipe(gulp.dest('dist/CONTROL'))
   },
   description: {
-    src: () => plugin.download($.plexpy.readme)
+    src: () => plugin.downloadStream($.plexpy.readme)
+      .pipe(plugin.buffer())
       .pipe(plugin.intercept(file => {
         var regex = /## Features\s*\*(.*\.\n)+/gm
         var matches = regex.exec(file.contents.toString())

@@ -15,8 +15,8 @@
     ],
     "name": "{{name}}",
     "package": "{{name}}",
-    "version": "{{version}}",
-    "website": "https://github.com/drzoidberg33/plexpy"
+    "version": "{{app.version}}",
+    "website": "{{{plexpy.url}}}"
   },
   "adm-desktop": {
     "app": {
@@ -32,12 +32,6 @@
   "register": {
     "port": [
       "8181"
-    ],
-    "share-folder": [
-      {
-        "name": "{{name}}",
-        "description": "PlexPy Installation Directory"
-      }
     ]
   }
 }
