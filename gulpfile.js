@@ -1,79 +1,58 @@
 var gulp = require('gulp-build-tasks')(require('gulp'))
 var fs = require('fs')
+var merge = require('merge')
+var mustache = require('mustache')
 var path = require('path')
 var plugin = require('gulp-load-plugins')()
 
 var $ = gulp.bt.config
 var npmconf = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json')))
+var context = merge({}, npmconf, $)
 
 gulp.bt.build({
+  changelog: {
+    src: () => plugin.download($.plexpy.changelog)
+      .pipe(plugin.rename('changelog.txt'))
+      .pipe(gulp.dest('dist/CONTROL'))
+  },
   json: {
     build: src => src
-      .pipe(plugin.mustache(npmconf))
+      .pipe(plugin.mustache(context))
       .pipe(gulp.dest('dist')),
-    src: ['src/**/*.json'],
-    tasks: ['download']
+    src: ['src/**/*.json']
   },
   png: {
     build: src => src
       .pipe(plugin.imagemin())
       .pipe(gulp.dest('dist')),
-    src: ['src/**/*.png'],
-    tasks: ['download']
+    src: ['src/**/*.png']
   },
   sh: {
     build: src => src
-      .pipe(plugin.mustache(npmconf))
+      .pipe(plugin.mustache(context))
       .pipe(gulp.dest('dist')),
     src: ['src/**/*.sh']
   },
   txt: {
     build: src => src
-      .pipe(plugin.mustache(npmconf))
+      .pipe(plugin.mustache(context))
       .pipe(gulp.dest('dist')),
-    src: ['src/**/*.txt'],
-    tasks: ['download']
+    src: ['src/**/*.txt']
   }
 })
 
 gulp.bt.reload('build').when({
   'src/**/*.json': ['build:json'],
+  'src/**/*.png': ['build:png'],
+  'src/**/*.sh': ['build:sh'],
   'src/**/*.txt': ['build:txt']
 })
 
 gulp.task('clean', () => {
   return gulp.src(['dist', '**/*.apk'])
     .pipe(plugin.debug({ title: 'clean:' }))
-    .pipe(plugin.shell('rm -rf <%= (file.path) %>'))
+    .pipe(plugin.clean())
 })
 
 gulp.task('default', ['build'])
-
-gulp.task('package:build', ['build'], () => {
-  return gulp.src(['dist/opt/plexpy/lib/.git/'])
-    .pipe(plugin.debug({ title: '.git:' }))
-    .pipe(plugin.clean())
-})
-gulp.task('package', ['package:build'], plugin.shell.task(['echo -e "\n" | sudo -S python tools/apkg-tools.py create dist']))
-
-gulp.task('download', ['plexpy'])
-gulp.task('plexpy', done => {
-  var git = (method, value, args, next) => {
-    if (value instanceof Array) {
-      return plugin.git[method](value[0], value[1], args, (error) => {
-        if (error) throw error
-        return next()
-      })
-    }
-    return plugin.git[method](value, args, (error) => {
-      if (error) throw error
-      return next()
-    })
-  }
-
-  fs.stat(path.join(process.cwd(), 'dist/opt/plexpy/lib'), (err, stats) => {
-    if (!stats || !stats.isDirectory()) {
-      return git('clone', $.plexpy.url, { args: 'dist/opt/plexpy/lib --recursive' }, done)
-    }
-  })
-})
+gulp.task('package', ['build'], plugin.shell.task(['echo -e "\n" | sudo -S python tools/apkg-tools.py create dist']))

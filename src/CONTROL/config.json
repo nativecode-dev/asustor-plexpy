@@ -3,7 +3,7 @@
     "architecture": "any",
     "default-lang": "en",
     "depends": [
-      "python(>=2.7.3.r13)"
+      "python(>=2.7)"
     ],
     "developer": "https://github.com/drzoidberg33/plexpy.git",
     "email": "support@nativecode.com",
@@ -20,8 +20,8 @@
   },
   "adm-desktop": {
     "app": {
-      "protocol": "http",
       "port": 8181,
+      "protocol": "http",
       "type": "custom",
       "url": "/"
     },
