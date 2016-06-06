@@ -20,6 +20,7 @@
     "gulp-mustache": "^2.2.0",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
     "gulp-shell": "^0.5.2",
     "gulp-shrinkwrap": "^2.0.1",
     "gulp-ssh": "^0.5.6",

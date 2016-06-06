@@ -12,6 +12,7 @@ var context = merge({}, npmconf, $)
 gulp.bt.build({
   changelog: {
     src: () => plugin.download($.plexpy.changelog)
+      .pipe(plugin.replace('##', ''))
       .pipe(plugin.rename('changelog.txt'))
       .pipe(gulp.dest('dist/CONTROL'))
   },
