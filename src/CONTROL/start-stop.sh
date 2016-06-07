@@ -21,11 +21,13 @@ package_stop() {
     i=0
     REPEATS=3
     package_terminate
-    while [ -f $PIDFILE ]
+    while [ -f $PIDFILE ] && [ $i -lt $REPEATS ]
     do
         sleep 2
+        package_terminate
         let "i+=1"
     done
+    package_kill
 }
 
 case $1 in
