@@ -4,9 +4,9 @@
     "version": ":{{plexpy.version}}.{{app.build}}"
   },
   "plexpy": {
-    "changelog": ":{{{plexpy.usercontent}}}/{{plexpy.tag}}/CHANGELOG.md",
-    "license": ":{{{plexpy.usercontent}}}/{{plexpy.tag}}/LICENSE",
-    "readme": ":{{{plexpy.usercontent}}}/{{plexpy.tag}}/README.md",
+    "changelog": ":{{{plexpy.usercontent}}}/v{{plexpy.version}}/CHANGELOG.md",
+    "license": ":{{{plexpy.usercontent}}}/v{{plexpy.version}}/LICENSE",
+    "readme": ":{{{plexpy.usercontent}}}/v{{plexpy.version}}/README.md",
     "tag": ":v{{plexpy.version}}",
     "url": "https://github.com/drzoidberg33/plexpy.git",
     "usercontent": "https://raw.githubusercontent.com/drzoidberg33/plexpy",

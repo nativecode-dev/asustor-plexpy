@@ -8,7 +8,7 @@ USER=admin
 case "${APKG_PKG_STATUS}" in
     install)
         mkdir -p $PACKAGE/data
-        git clone {{plexpy.url}} $PACKAGE/lib
+        git clone {{{plexpy.url}}} $PACKAGE/lib
         cd $PACKAGE/lib
         git checkout {{plexpy.tag}}
         git branch -D master
