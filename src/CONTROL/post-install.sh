@@ -3,9 +3,6 @@
 DATADIR=/share/{{name}}
 PACKAGE=/usr/local/AppCentral/{{name}}
 
-GROUP=administrators
-USER=admin
-
 case "${APKG_PKG_STATUS}" in
     install)
         mkdir -p $DATADIR
