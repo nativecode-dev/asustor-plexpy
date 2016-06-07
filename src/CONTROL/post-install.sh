@@ -1,5 +1,6 @@
 #!/bin/bash
 
+DATADIR=/share/{{name}}
 PACKAGE=/usr/local/AppCentral/{{name}}
 
 GROUP=administrators
@@ -7,7 +8,7 @@ USER=admin
 
 case "${APKG_PKG_STATUS}" in
     install)
-        mkdir -p $PACKAGE/data
+        mkdir -p $DATADIR
         git clone {{{plexpy.url}}} $PACKAGE/lib
         cd $PACKAGE/lib
         git checkout {{plexpy.tag}}
@@ -21,8 +22,5 @@ case "${APKG_PKG_STATUS}" in
         ;;
 
     *)
-        cd $PACKAGE
-        chown -R ${USER}:${GROUP} $PACKAGE/data
-        chown -R ${USER}:${GROUP} $PACKAGE/lib
         ;;
 esac

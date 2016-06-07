@@ -1,25 +1,27 @@
 #!/bin/sh
 
+DATADIR=/share/{{name}}
 PACKAGE=/usr/local/AppCentral/{{name}}
+PIDFILE=$PACKAGE/.pidfile
 cd $PACKAGE
 
 package_kill() {
-    kill -KILL $(cat $PACKAGE/data/.pidfile)
+    kill -KILL $(cat $PIDFILE)
 }
 
 package_terminate() {
-    kill -TERM $(cat $PACKAGE/data/.pidfile)
+    kill -TERM $(cat $PIDFILE)
 }
 
 package_start() {
-    python lib/PlexPy.py --daemon --datadir $PACKAGE/data --nolaunch --pidfile $PACKAGE/data/.pidfile
+    python lib/PlexPy.py --daemon --datadir $DATADIR --nolaunch --pidfile $PIDFILE
 }
 
 package_stop() {
     i=0
     REPEATS=3
     package_terminate
-    while [ -f $PACKAGE/data/.pidfile ]
+    while [ -f $PIDFILE ]
     do
         sleep 2
         let "i+=1"

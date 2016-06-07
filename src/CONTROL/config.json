@@ -32,6 +32,12 @@
   "register": {
     "port": [
       "8181"
+    ],
+    "share-folder": [
+      {
+        "name": "{{name}}",
+        "description": "PlexPy Data"
+      }
     ]
   }
 }
