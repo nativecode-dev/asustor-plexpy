@@ -15,7 +15,9 @@ case "${APKG_PKG_STATUS}" in
 
     upgrade)
         cd $PACKAGE/lib
-        git pull origin master
+        git checkout {{plexpy.tag}}
+        git branch -D master
+        git checkout -b master
         ;;
 
     *)

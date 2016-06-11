@@ -10,6 +10,6 @@
     "tag": ":v{{plexpy.version}}",
     "url": "https://github.com/drzoidberg33/plexpy.git",
     "usercontent": "https://raw.githubusercontent.com/drzoidberg33/plexpy",
-    "version": "1.4.5"
+    "version": "1.4.6"
   }
 }
