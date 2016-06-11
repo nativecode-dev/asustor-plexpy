@@ -3,6 +3,7 @@
 DATADIR=/share/{{name}}
 PACKAGE=/usr/local/AppCentral/{{name}}
 PIDFILE=$PACKAGE/.pidfile
+PYTHON=`which python`
 cd $PACKAGE
 
 package_kill() {
@@ -14,7 +15,10 @@ package_terminate() {
 }
 
 package_start() {
-    python lib/PlexPy.py --daemon --datadir $DATADIR --nolaunch --pidfile $PIDFILE
+    $PYTHON $PACKAGE/lib/PlexPy.py --daemon --nolaunch \
+        --datadir $DATADIR \
+        --pidfile $PIDFILE \
+    ;
 }
 
 package_stop() {
