@@ -1,13 +1,13 @@
 var gulp = require('gulp-build-tasks')(require('gulp'))
 var fs = require('fs')
-var merge = require('merge')
+var merge = require('merge').recursive
 var mustache = require('mustache')
 var path = require('path')
 var plugin = require('gulp-load-plugins')()
 
 var $ = gulp.bt.config
 var npmconf = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json')))
-var context = merge({}, npmconf, $)
+var context = merge(true, npmconf, $)
 
 gulp.bt.build({
   changelog: {

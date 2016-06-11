@@ -1,13 +1,11 @@
 {
   "app": {
-    "build": 0,
-    "version": ":{{plexpy.version}}.{{app.build}}"
+    "build": 0
   },
   "plexpy": {
     "changelog": ":{{{plexpy.usercontent}}}/v{{plexpy.version}}/CHANGELOG.md",
     "license": ":{{{plexpy.usercontent}}}/v{{plexpy.version}}/LICENSE",
     "readme": ":{{{plexpy.usercontent}}}/v{{plexpy.version}}/README.md",
-    "tag": ":v{{plexpy.version}}",
     "url": "https://github.com/drzoidberg33/plexpy.git",
     "usercontent": "https://raw.githubusercontent.com/drzoidberg33/plexpy",
     "version": "1.4.6"

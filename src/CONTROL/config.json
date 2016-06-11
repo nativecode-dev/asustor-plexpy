@@ -15,7 +15,7 @@
     ],
     "name": "{{name}}",
     "package": "{{name}}",
-    "version": "{{app.version}}",
+    "version": "{{version}}.{{app.build}}",
     "website": "{{{plexpy.url}}}"
   },
   "adm-desktop": {
