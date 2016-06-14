@@ -3,6 +3,7 @@
     "architecture": "any",
     "default-lang": "en",
     "depends": [
+      "git",
       "python(>=2.7)"
     ],
     "developer": "drzoidberg33",
