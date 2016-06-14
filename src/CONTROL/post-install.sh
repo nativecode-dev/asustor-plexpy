@@ -24,11 +24,6 @@ case $APKG_PKG_STATUS in
         exit $?
     ;;
 
-    "uninstall")
-        rm -rf $PACKAGE/lib
-        exit $?
-    ;;
-
     *)
         exit 1
     ;;
