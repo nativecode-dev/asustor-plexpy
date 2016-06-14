@@ -6,7 +6,7 @@ PACKAGE=/usr/local/AppCentral/{{name}}
 GROUP=administrators
 USER=admin
 
-if [ ! -d "$PACKAGE/lib"]; then
+if [ ! -d $PACKAGE/lib]; then
     git clone {{{plexpy.url}}} $PACKAGE/lib
 fi
 
